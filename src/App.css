@@ -31,6 +31,14 @@ body {
   color: var(--clr-text);
 }
 
+a {
+  text-decoration: none;
+  color: var(--clr-blue);
+}
+a:hover {
+  color: var(--clr-green);
+}
+
 .full-width {
   width: 100%;
 }
@@ -159,11 +167,10 @@ body {
 .app__footer {
   background-color: var(--clr-lighter);
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   color: var(--clr-text-lighter);
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
+  padding: 1.5rem;
 }
 
 /* ALERT */
@@ -182,4 +189,10 @@ body {
 }
 .alert.error {
   background-color: #f14668;
+}
+.app__msg {
+  display: flex;
+  height: 5rem;
+  justify-content: center;
+  align-self: center;
 }

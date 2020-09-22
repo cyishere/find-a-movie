@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import store from "store";
 import "./App.css";
 import Alert from "./components/Alert";
+import Footer from "./components/Footer";
 import Header from "./components/Header";
 import List from "./components/List";
 import SearchBar from "./components/SearchBar";
@@ -22,14 +23,13 @@ function App() {
     return [];
   });
 
-  useEffect(() => {
-    // store.set("moviesInList", []);
-    console.log("moviesInList", moviesInList);
-  }, [moviesInList]);
+  // useEffect(() => {
+  //   // store.set("moviesInList", []);
+  //   console.log("moviesInList", moviesInList);
+  // }, [moviesInList]);
 
   const searchMovie = async (e) => {
     e.preventDefault();
-    console.log("submit");
 
     const baseUrl = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&query=${query}&page=1&include_adult=false`;
 
@@ -84,8 +84,10 @@ function App() {
           </div>
 
           <div className="app__listScreen">
-            {moviesInList && (
+            {moviesInList.length > 0 ? (
               <List movies={moviesInList} handleAction={handleMarked} />
+            ) : (
+              <div className="app__msg">Search a movie add to here.</div>
             )}
 
             {moviesInList.length > 0 && (
@@ -94,7 +96,7 @@ function App() {
           </div>
         </div>
 
-        <footer className="app__footer">&copy; cyishere.github.io</footer>
+        <Footer />
       </div>
 
       <Alert show={showAlert} status={alertStatus} msg={alertMsg} />
