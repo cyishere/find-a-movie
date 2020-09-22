@@ -48,6 +48,10 @@ body {
 .btn:hover {
   opacity: 0.7;
 }
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 .btn.primary {
   background-color: var(--clr-blue);
   color: white;
