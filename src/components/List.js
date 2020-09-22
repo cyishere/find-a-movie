@@ -17,6 +17,19 @@ const List = ({ movies, handleAddMovie }) => {
               <div className="card-meta">
                 {movie.release_date.split("-")[0]}
               </div>
+
+              <div className="card-control">
+                {movie.watched ? (
+                  <button className="btn btn-small" disabled>
+                    watched
+                  </button>
+                ) : (
+                  <button className="btn btn-small secondary">
+                    mark as watched
+                  </button>
+                )}
+              </div>
+
               <div className="card-description">{movie.overview}</div>
             </div>
 

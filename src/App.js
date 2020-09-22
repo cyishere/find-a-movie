@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import store from "store";
 import "./App.css";
 import Alert from "./components/Alert";
 import Header from "./components/Header";
 import List from "./components/List";
 import SearchBar from "./components/SearchBar";
+// import moviesData from "./data";
 
 function App() {
   const [showAlert, setShowAlert] = useState(false);
@@ -15,11 +17,10 @@ function App() {
   const [movies, setMovies] = useState([]);
   const [moviesInList, setMoviesInList] = useState([]);
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setShowAlert(false);
-  //   }, 3000);
-  // }, [showAlert]);
+  useEffect(() => {
+    // store.set("moviesInList", []);
+    console.log("moviesInList", moviesInList);
+  }, [moviesInList]);
 
   const searchMovie = async (e) => {
     e.preventDefault();
@@ -48,6 +49,7 @@ function App() {
   const handleAddMovie = (movie) => {
     const newMovies = moviesInList.concat(movie);
     setMoviesInList(newMovies);
+    localStorage.setItem("moviesInList", newMovies);
   };
 
   return (
@@ -67,7 +69,8 @@ function App() {
           </div>
 
           <div className="app__listScreen">
-            <List movies={moviesInList} />
+            {moviesInList && <List movies={moviesInList} />}
+
             {moviesInList.length > 0 && (
               <button className="btn pink full-width">find a movie</button>
             )}

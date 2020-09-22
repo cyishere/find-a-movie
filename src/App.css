@@ -20,6 +20,7 @@ html {
   --clr-green: #00d1b2;
   --clr-pink: #ea4aaa;
 
+  --fs-small: 1.2rem;
   --fs-normal: 1.4rem;
   --fs-secondary: 2rem;
 }
@@ -51,6 +52,10 @@ body {
 .btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+.btn.btn-small {
+  font-size: var(--fs-small);
+  padding: 0.4rem 0.6rem;
 }
 .btn.primary {
   background-color: var(--clr-blue);
@@ -124,7 +129,12 @@ body {
 }
 .card-meta {
   color: #999999;
-  margin-bottom: 2rem;
+}
+.card-control {
+  margin-top: 1rem;
+}
+.card-description {
+  margin-top: 2rem;
 }
 .card-actions {
   display: flex;
@@ -132,6 +142,9 @@ body {
   align-items: center;
 }
 
+.app__searchScreen .card-control {
+  display: none;
+}
 .app__listScreen .card {
   grid-template-columns: 5rem 1fr;
 }
