@@ -25,7 +25,7 @@ function App() {
     e.preventDefault();
     console.log("submit");
 
-    const baseUrl = `https://api.themoviedb.org/3/search/movie?api_key=0c3a5039966108d7ed98e6396796d0ce&language=en-US&query=${query}&page=1&include_adult=false`;
+    const baseUrl = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&query=${query}&page=1&include_adult=false`;
 
     try {
       setShowAlert(true);
