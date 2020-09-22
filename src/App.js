@@ -1,25 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import "./App.css";
+import Alert from "./components/Alert";
+import Header from "./components/Header";
+import List from "./components/List";
+import SearchBar from "./components/SearchBar";
+import movies from "./data";
 
 function App() {
+  const [showAlert, setShowAlert] = useState(true);
+  const [alertStatus, setAlertStatus] = useState("");
+
+  useEffect(() => {
+    setTimeout(() => {
+      setShowAlert(false);
+    }, 3000);
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="app">
+        <Header />
+
+        <div className="app_mainScreen">
+          <div className="app__searchScreen">
+            <SearchBar />
+
+            <List movies={movies} />
+          </div>
+
+          <div className="app__listScreen">
+            <List movies={movies} />
+            <button className="btn pink full-width">find a movie</button>
+          </div>
+        </div>
+
+        <footer className="app__footer">&copy; cyishere.github.io</footer>
+      </div>
+
+      <Alert show={showAlert} status={alertStatus} />
+    </>
   );
 }
 
