@@ -1,6 +1,6 @@
 import React from "react";
 
-const List = ({ movies, handleAddMovie }) => {
+const List = ({ movies, handleAction }) => {
   return (
     <ul className="app__list">
       {movies.map((movie) => (
@@ -24,7 +24,10 @@ const List = ({ movies, handleAddMovie }) => {
                     watched
                   </button>
                 ) : (
-                  <button className="btn btn-small secondary">
+                  <button
+                    className="btn btn-small secondary"
+                    onClick={() => handleAction(movie)}
+                  >
                     mark as watched
                   </button>
                 )}
@@ -36,7 +39,7 @@ const List = ({ movies, handleAddMovie }) => {
             <div className="card-actions">
               <button
                 className="btn secondary"
-                onClick={() => handleAddMovie(movie)}
+                onClick={() => handleAction(movie)}
               >
                 +
               </button>

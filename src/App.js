@@ -15,7 +15,12 @@ function App() {
   const [query, setQuery] = useState("");
 
   const [movies, setMovies] = useState([]);
-  const [moviesInList, setMoviesInList] = useState([]);
+  const [moviesInList, setMoviesInList] = useState(() => {
+    if (store.get("moviesInList")) {
+      return store.get("moviesInList");
+    }
+    return [];
+  });
 
   useEffect(() => {
     // store.set("moviesInList", []);
@@ -47,9 +52,19 @@ function App() {
   };
 
   const handleAddMovie = (movie) => {
-    const newMovies = moviesInList.concat(movie);
+    const addedMovie = { ...movie, watched: false };
+    const newMovies = moviesInList.concat(addedMovie);
     setMoviesInList(newMovies);
-    localStorage.setItem("moviesInList", newMovies);
+    store.set("moviesInList", newMovies);
+  };
+
+  const handleMarked = (movie) => {
+    const moviesInLocal = store.get("moviesInList");
+    const newStore = moviesInLocal.map((item) =>
+      item.id === movie.id ? { ...item, watched: true } : item
+    );
+    setMoviesInList(newStore);
+    store.set("moviesInList", newStore);
   };
 
   return (
@@ -65,11 +80,13 @@ function App() {
               setQuery={setQuery}
             />
 
-            <List movies={movies} handleAddMovie={handleAddMovie} />
+            <List movies={movies} handleAction={handleAddMovie} />
           </div>
 
           <div className="app__listScreen">
-            {moviesInList && <List movies={moviesInList} />}
+            {moviesInList && (
+              <List movies={moviesInList} handleAction={handleMarked} />
+            )}
 
             {moviesInList.length > 0 && (
               <button className="btn pink full-width">find a movie</button>
