@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import store from "store";
 import "./App.css";
 import Alert from "./components/Alert";
 import Header from "./components/Header";
 import List from "./components/List";
 import SearchBar from "./components/SearchBar";
+// import moviesData from "./data";
 
 function App() {
   const [showAlert, setShowAlert] = useState(false);
@@ -13,13 +15,17 @@ function App() {
   const [query, setQuery] = useState("");
 
   const [movies, setMovies] = useState([]);
-  const [moviesInList, setMoviesInList] = useState([]);
+  const [moviesInList, setMoviesInList] = useState(() => {
+    if (store.get("moviesInList")) {
+      return store.get("moviesInList");
+    }
+    return [];
+  });
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setShowAlert(false);
-  //   }, 3000);
-  // }, [showAlert]);
+  useEffect(() => {
+    // store.set("moviesInList", []);
+    console.log("moviesInList", moviesInList);
+  }, [moviesInList]);
 
   const searchMovie = async (e) => {
     e.preventDefault();
@@ -46,8 +52,19 @@ function App() {
   };
 
   const handleAddMovie = (movie) => {
-    const newMovies = moviesInList.concat(movie);
+    const addedMovie = { ...movie, watched: false };
+    const newMovies = moviesInList.concat(addedMovie);
     setMoviesInList(newMovies);
+    store.set("moviesInList", newMovies);
+  };
+
+  const handleMarked = (movie) => {
+    const moviesInLocal = store.get("moviesInList");
+    const newStore = moviesInLocal.map((item) =>
+      item.id === movie.id ? { ...item, watched: true } : item
+    );
+    setMoviesInList(newStore);
+    store.set("moviesInList", newStore);
   };
 
   return (
@@ -63,11 +80,14 @@ function App() {
               setQuery={setQuery}
             />
 
-            <List movies={movies} handleAddMovie={handleAddMovie} />
+            <List movies={movies} handleAction={handleAddMovie} />
           </div>
 
           <div className="app__listScreen">
-            <List movies={moviesInList} />
+            {moviesInList && (
+              <List movies={moviesInList} handleAction={handleMarked} />
+            )}
+
             {moviesInList.length > 0 && (
               <button className="btn pink full-width">find a movie</button>
             )}
