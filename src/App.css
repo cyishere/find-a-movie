@@ -19,6 +19,7 @@ html {
   --clr-blue: #3273dc;
   --clr-green: #00d1b2;
   --clr-pink: #ea4aaa;
+  --clr-red: #f14668;
 
   --fs-small: 1.2rem;
   --fs-normal: 1.4rem;
@@ -77,6 +78,15 @@ a:hover {
   background-color: var(--clr-pink);
   color: white;
 }
+.btn.warning {
+  background-color: white;
+  color: var(--clr-red);
+  border: 3px solid var(--clr-red);
+  cursor: text;
+}
+.btn.warning:hover {
+  opacity: 1;
+}
 
 .input {
   border: 0.1rem var(--clr-grey) solid;
@@ -117,6 +127,9 @@ a:hover {
 .app__list {
   list-style: none;
 }
+.app__list-item {
+  margin-bottom: 2rem;
+}
 
 /* List Sidebar */
 .app__listScreen {
@@ -127,7 +140,6 @@ a:hover {
 .card {
   display: grid;
   grid-template-columns: 9.4rem 4fr 1fr;
-  margin-bottom: 2rem;
 }
 .card-content {
   padding-left: 1.5rem;
@@ -195,4 +207,32 @@ a:hover {
   height: 5rem;
   justify-content: center;
   align-self: center;
+}
+
+/* MODAL */
+.app__modalContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2000;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.app__modalContainer.close {
+  display: none;
+}
+.app__modal {
+  background-color: white;
+  padding: 3rem;
+  border-radius: 0.6rem;
+}
+.app__modal .app__list-item {
+  margin-bottom: 0;
+}
+.app__modal .app__msg {
+  height: auto;
 }

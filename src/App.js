@@ -5,6 +5,7 @@ import Alert from "./components/Alert";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import List from "./components/List";
+import Modal from "./components/Modal";
 import SearchBar from "./components/SearchBar";
 // import moviesData from "./data";
 
@@ -23,10 +24,16 @@ function App() {
     return [];
   });
 
-  // useEffect(() => {
-  //   // store.set("moviesInList", []);
-  //   console.log("moviesInList", moviesInList);
-  // }, [moviesInList]);
+  const [randomOne, setRandomOne] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const handleRandomOne = () => {
+    const notWatched = moviesInList.filter((item) => !item.watched);
+    const index = Math.floor(Math.random() * notWatched.length);
+    const random = notWatched[index];
+    setRandomOne(random);
+    setModalOpen(true);
+  };
 
   const searchMovie = async (e) => {
     e.preventDefault();
@@ -91,7 +98,9 @@ function App() {
             )}
 
             {moviesInList.length > 0 && (
-              <button className="btn pink full-width">find a movie</button>
+              <button className="btn pink full-width" onClick={handleRandomOne}>
+                find a movie
+              </button>
             )}
           </div>
         </div>
@@ -100,6 +109,7 @@ function App() {
       </div>
 
       <Alert show={showAlert} status={alertStatus} msg={alertMsg} />
+      <Modal movie={randomOne} open={modalOpen} setOpen={setModalOpen} />
     </>
   );
 }
