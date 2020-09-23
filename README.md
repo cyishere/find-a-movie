@@ -3,9 +3,10 @@
 Use localStorage store the data.
 
 - find a movie
-- add to the default list
+- add to the default list, store data at local
 - press the "Find One" button to find a movie to watch
-- label that movie as "watched", automatically delete it from the list
+- label that movie as "watched"
+- delete data from local
 
 ---
 
