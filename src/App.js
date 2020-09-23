@@ -27,6 +27,14 @@ function App() {
   const [randomOne, setRandomOne] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
 
+  const clearAlert = () => {
+    setTimeout(() => {
+      setShowAlert(false);
+      setAlertStatus("");
+      setAlertMsg("");
+    }, 2000);
+  };
+
   const handleRandomOne = () => {
     const notWatched = moviesInList.filter((item) => !item.watched);
     const index = Math.floor(Math.random() * notWatched.length);
@@ -55,6 +63,8 @@ function App() {
       setAlertStatus("error");
       setAlertMsg("server error...");
       console.log(error);
+
+      clearAlert();
     }
   };
 
@@ -74,12 +84,22 @@ function App() {
     store.set("moviesInList", newStore);
   };
 
+  const handleClear = () => {
+    store.remove("moviesInList");
+    setMoviesInList([]);
+    setShowAlert(true);
+    setAlertStatus("success");
+    setAlertMsg("Data clear successfully!");
+
+    clearAlert();
+  };
+
   return (
     <>
       <div className="app">
-        <Header movies={moviesInList} />
+        <Header movies={moviesInList} handleClear={handleClear} />
 
-        <div className="app_mainScreen">
+        <div className="app__mainScreen">
           <div className="app__searchScreen">
             <SearchBar
               searchMovie={searchMovie}

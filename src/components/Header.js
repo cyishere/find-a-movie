@@ -1,6 +1,6 @@
 import React from "react";
 
-const Header = ({ movies }) => {
+const Header = ({ movies, handleClear }) => {
   return (
     <header className="app__header">
       <h1>Find a Movie</h1>
@@ -11,7 +11,9 @@ const Header = ({ movies }) => {
             Clear your data
           </button>
         ) : (
-          <button className="btn primary">Clear your data</button>
+          <button className="btn primary" onClick={handleClear}>
+            Clear your data
+          </button>
         )}
       </nav>
     </header>
