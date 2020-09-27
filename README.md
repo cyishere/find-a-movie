@@ -1,6 +1,6 @@
 # Find a Movie
 
-**What is this:** This is a web application using api and using localStorage to store the data.
+**What is this:** This is a web application using open api and using localStorage to store the data.
 
 I have difficulty on make a choice about which film to watch, so I made this simple app to help me make the decision. Here are the main features:
 
@@ -10,7 +10,7 @@ I have difficulty on make a choice about which film to watch, so I made this sim
 - label that movie as "watched"
 - delete data from local
 
-## **How to Use:** For example, use the search input to find the nominees of 2020 Oscars, and add them to the default list, then let the app to find one (make the decision) for you.
+**How to Use:** For example, use the search input to find the nominees of 2020 Oscars, and add them to the default list, then let the app to find one (make the decision) for you.
 
 The "f" letter's font in the logo is _Apple Chancery_.
 
