@@ -20,7 +20,7 @@ The "f" letter's font in the logo is _Apple Chancery_.
 
 I think the safety way is creating the app in Heroku and use the "Github" as the deployment method.
 
-The we can use `https://github.com/mars/create-react-app-buildpack.git` as the buildpack add manually at it in "Settings". This is because by default the build method is "node" which is not suitable for a React app.
+Then we can use `https://github.com/mars/create-react-app-buildpack.git` as the buildpack add manually at it in "Settings". This is because by default the build method is "node" which is not suitable for a React app.
 
 And manually add the `REACT_APP_API_KEY` in the "Config Vars" area which is also in "Settings".
 
