@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer className="app__footer">
       <a href="https://github.com/cyishere/find-a-movie">about</a>
-      <span>&copy; cyishere.github.io</span>
+      <span>&copy; cyishere.dev</span>
     </footer>
   );
 };
